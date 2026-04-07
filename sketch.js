@@ -51,6 +51,7 @@ function getCurrentAmplitude() {
 }
 
 function initMaze() {
+  numPoints = 5 + floor(level / 2); // 隨等級增加點的數量，讓迷宮越來越長、越曲折
   topPoints = [];
   bottomPoints = [];
   let spacing = width / (numPoints - 1);
@@ -357,7 +358,9 @@ function drawEndScreen(msg, clr) {
   rect(continueX, btnY, btnW, btnH, 10);
   noStroke();
   fill(255);
-  text("繼續挑戰", continueX + btnW / 2, btnY + btnH / 2 + 7);
+  // 根據勝負狀態顯示不同的按鈕文字
+  let continueText = (gameState === 'WIN') ? "進入下一關" : "繼續挑戰";
+  text(continueText, continueX + btnW / 2, btnY + btnH / 2 + 7);
 }
 
 function mousePressed() {
